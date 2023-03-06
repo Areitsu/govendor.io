@@ -87,7 +87,27 @@
             <div class="row contact_information">
                 <div class="col-md-6">
                     <div class="contact_right p-lg-5 p-4">
-                        
+                        <form action="send_post.php" method="post">
+                            <div class="field-group">
+                                <div class="content-input-field">
+                                    <input name="posttitle" id="title" type="text" value="" placeholder="Title" required="">
+                                </div>
+                            </div>
+                            <div class="field-group">
+                                <div class="content-input-field">
+                                    <input name="business" id="businessname" type="text" value="" placeholder="Describe your business" required="">
+                                </div>
+                            </div>
+                            <div class="field-group">
+                                <div class="content-input-field">
+                                    <textarea placeholder="Tell us about what you're selling..." required=""></textarea>
+                                </div>
+                            </div>
+                            <div class="content-input-field">
+                                <button type="submit" class="btn">Submit</button>
+                            </div>
+
+                        </form>  
                     </div>
                 </div>
                 <div class="col-md-6 contact_left p-4">
