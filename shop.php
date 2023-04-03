@@ -113,7 +113,7 @@
                     </div>
                 </div>
                 
-                    <table border = 1 cellspacing = 0 cellpadding = 10>
+                    <table border = 1 cellspacing = 0 cellpadding = 1>
                       <tr>
                         <td>#</td>
                         <td>Business Name</td>
@@ -130,9 +130,10 @@
                       ?>
                       <tr>
                         <td><?php echo $i++; ?></td>
-                        <td><?php echo $row["name"]; ?></td>
-                        <td><?php echo $row["email"]; ?></td>
-                        <td style = "width: 450px; height: 450px;"><iframe style = "width: 100%; height: 100%;" src="https://www.google.com/maps?q=<?php echo $row["latitude"]; ?>,<?php echo $row["longitude"]; ?>&hl=es;z=14&output=embed"></iframe></td>
+                        <td><?php echo $row["Business Name"]; ?></td>
+                        <td><?php echo $row["First Name"]; ?></td>
+                        <td><?php echo $row["Last Name"]; ?></td>
+                        <td><?php echo $row["Phone Number"]; ?></td>
                       </tr>
                       <?php endforeach; ?>
                     </table>
