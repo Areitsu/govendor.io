@@ -123,7 +123,6 @@
                       </tr>
 
                       <?php
-                      require 'connection.php';
                       $rows = mysqli_query($conn, "SELECT * FROM tb_data ORDER BY id DESC");
                       $i = 1;
                 
