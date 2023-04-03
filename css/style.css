@@ -188,6 +188,9 @@ nav:after {
     clear: both;
 }
 
+table, th, td {
+    border: 1px solid black;
+  }
 /* Removing padding, margin and "list-style" from the "ul",
  * and adding "position:reltive" */
 nav ul {
