@@ -4,10 +4,8 @@ $servername = "mysql://root:urnWYEZcoaCBS0LFv1et@containers-us-west-202.railway.
 $username = "root";
 $password = "urnWYEZcoaCBS0LFv1et";
 $dbname = "railway";
-$port = "6183";
-$host = "containers-us-west-202.railway.app";
 
-$conn = new mysqli($servername, $username, $password, $dbname, $port);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
