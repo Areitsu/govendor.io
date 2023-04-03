@@ -89,20 +89,20 @@
                 <div class="col-md-6">
                     <div class="contact_right p-lg-5 p-4">
                         <h2>Add your Local Business here</h2>
-                        <form action="send_post.php" method="post">
+                        <form action="shop_data.php" method="post">
                             <div class="field-group">
                                 <div class="content-input-field">
-                                    <input name="posttitle" id="title" type="text" value="" placeholder="Title" required="">
+                                    <input name="posttitle" id="title" type="text" value="" placeholder="Business Name" required="">
                                 </div>
                             </div>
                             <div class="field-group">
                                 <div class="content-input-field">
-                                    <input name="business" id="businessname" type="text" value="" placeholder="Describe your business" required="">
+                                    <input name="business" id="businessname" type="text" value="" placeholder="Business Location" required="">
                                 </div>
                             </div>
                             <div class="field-group">
                                 <div class="content-input-field">
-                                    <textarea placeholder="Tell us about what you're selling..." required=""></textarea>
+                                    <textarea placeholder="Type of business" required=""></textarea>
                                 </div>
                             </div>
                             <div class="content-input-field">
@@ -113,32 +113,10 @@
                     </div>
                 </div>
                 
-                    <table>
-                      <tr>
-                        <td>#</td>
-                        <td>Business Name</td>
-                        <td>First Name </td>
-                        <td>Last Name </td>
-                        <td>Phone Number </td>
-                      </tr>
-
-                      <?php
-                      $rows = mysqli_query($conn, "SELECT * FROM tb_data ORDER BY id DESC");
-                      $i = 1;
-                
-                      foreach($rows as $row) :
-                      ?>
-                      <tr>
-                        <td><?php echo $i++; ?></td>
-                        <td><?php echo $row["Business Name"]; ?></td>
-                        <td><?php echo $row["First Name"]; ?></td>
-                        <td><?php echo $row["Last Name"]; ?></td>
-                        <td><?php echo $row["Phone Number"]; ?></td>
-                      </tr>
-                      <?php endforeach; ?>
-                    </table>
-                    
-            
+                <?php
+	            include('display.php');
+	            ?>
+    
                 <div class="col-lg-4 col-md-6 mt-lg-4 contact-inn-w3pvt">
                     <div class="mt-5 information-wthree">
                         <h4 class="text-uppercase mb-4"><span class="fa fa-comments"></span> Communication</h4>

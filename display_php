@@ -1,0 +1,31 @@
+<?php
+// Connect to the MySQL database
+$servername = "localhost";
+$username = "username";
+$password = "password";
+$dbname = "database_name";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Select all data from the "vendors" table
+$sql = "SELECT * FROM vendors";
+$result = $conn->query($sql);
+
+// Display the data in a table
+if ($result->num_rows > 0) {
+    echo "<table><tr><th>Vendor Name</th><th>Vendor Location</th></tr>";
+    while($row = $result->fetch_assoc()) {
+        echo "<tr><td>" . $row["vendor_name"] . "</td><td>" . $row["vendor_location"] . "</td></tr>";
+    }
+    echo "</table>";
+} else {
+    echo "0 results";
+}
+
+$conn->close();
+?>
