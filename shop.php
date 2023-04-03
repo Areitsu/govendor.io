@@ -117,17 +117,13 @@
                       <tr>
                         <td>#</td>
                         <td>Business Name</td>
-                        <td>Selling</td>
-                        <td>Maps</td>
+                        <td>First Name </td>
+                        <td>Last Name </td>
+                        <td>Phone Number </td>
                       </tr>
-                
+
                       <?php
-                      $servername = "localhost";
-                      $username = "username";
-                      $password = "password";
-                      $dbname = "myDB";
-                      
-                      // Create connection
+              
                       $conn = new mysqli($servername, $username, $password, $dbname);
                       // Check connection
                       if ($conn->connect_error) {
@@ -145,7 +141,6 @@
                         <td><?php echo $row["First Name"]; ?></td>
                         <td><?php echo $row["Last Name"]; ?></td>
                         <td><?php echo $row["Phone Number"]; ?></td>
-                        <td style = "width: 450px; height: 250px;"><iframe style = "width: 100%; height: 100%;" src="https://www.google.com/maps?q=<?php echo $row["latitude"]; ?>,<?php echo $row["longitude"]; ?>&hl=es;z=14&output=embed"></iframe></td>
                       </tr>
                       <?php endforeach; ?>
                     </table>
