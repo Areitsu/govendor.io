@@ -20,7 +20,7 @@ $vendor_location = $_POST['vendor_location'];
 $vendor_type = $_POST['vendor_type'];
 
 // Insert the data into the "vendors" table
-$sql = "INSERT INTO vendors (vendor_name, vendor_location) VALUES ('$vendor_name', '$vendor_location')";
+$sql = "INSERT INTO vendors (vendor_name, vendor_location, vendor_type) VALUES ('$vendor_name', '$vendor_location', '$vendor_type')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
