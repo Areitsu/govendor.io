@@ -123,12 +123,6 @@
                       </tr>
 
                       <?php
-              
-                      $conn = new mysqli($servername, $username, $password, $dbname);
-                      // Check connection
-                      if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                      }
 
                       $rows = mysqli_query($conn, "SELECT * FROM Users ORDER BY id DESC");
                       $i = 1;
