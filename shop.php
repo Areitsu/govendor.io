@@ -113,7 +113,7 @@
                     </div>
                 </div>
                 
-                    <table border = 1 cellspacing = 0 cellpadding = 1>
+                    <table border = 1 cellspacing = 0 cellpadding = 3>
                       <tr>
                         <td>#</td>
                         <td>Business Name</td>
