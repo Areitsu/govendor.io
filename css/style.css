@@ -188,9 +188,30 @@ nav:after {
     clear: both;
 }
 
-table, th, td {
-    border: 1px solid black;
+table {
+    border-collapse: collapse;
+    margin: 1rem auto;
   }
+  
+  thead {
+    background-color: #f2f2f2;
+  }
+  
+  th,
+  td {
+    padding: 0.5rem;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  th {
+    font-weight: bold;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
 /* Removing padding, margin and "list-style" from the "ul",
  * and adding "position:reltive" */
 nav ul {
