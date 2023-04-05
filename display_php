@@ -1,15 +1,11 @@
 <?php
-// Connect to the MySQL database
-$servername = "mysql://root:YBrBrQfKH7bDV8z4B1ba@containers-us-west-203.railway.app:6259/railway";
-$username = "root";
-$password = "YBrBrQfKH7bDV8z4B1ba";
-$dbname = "railway";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+@include 'config.php';
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+session_start();
+
+if(!isset($_SESSION['admin_name'])){
+   header('location:login_form.php');
 }
 
 // Select all data from the "vendors" table
