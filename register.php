@@ -1,12 +1,48 @@
+<?php
+
+@include 'config.php';
+
+if(isset($_POST['submit'])){
+
+   $name = mysqli_real_escape_string($conn, $_POST['name']);
+   $email = mysqli_real_escape_string($conn, $_POST['email']);
+   $pass = md5($_POST['password']);
+   $cpass = md5($_POST['cpassword']);
+
+   $select = " SELECT * FROM user_form WHERE email = '$email' && password = '$pass' ";
+
+   $result = mysqli_query($conn, $select);
+
+   if(mysqli_num_rows($result) > 0){
+
+      $error[] = 'user already exist!';
+
+   }else{
+
+      if($pass != $cpass){
+         $error[] = 'password not matched!';
+      }else{
+         $insert = "INSERT INTO user_form(name, email, password, user_type) VALUES('$name','$email','$pass','$user_type')";
+         mysqli_query($conn, $insert);
+         header('location:login_form.php');
+      }
+   }
+
+};
+
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>GoVendor Shop</title>
+    <title>GoVendor Register</title>
     <!-- Meta tag Keywords -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8" />
+   
     <script>
         addEventListener("load", function() {
             setTimeout(hideURLbar, 0);
@@ -52,13 +88,10 @@
                         <label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
                         <input type="checkbox" id="drop" />
                         <ul class="menu">
-                            <li><a href="index.html">Home</a></li>
+                            <li class="active"><a href="index.html">Home</a></li>
                             <li><a href="about.html">About Us</a></li>
-                            <li class="active"><a href="shop.html">Local Shops</a></li>
+                            <li><a href="shop.html">Local Shops</a></li>
                             <li><a href="contact.html">Contact</a></li>
-                            
-                                
-                           
                         </ul>
                     </nav>
                     <!-- //nav -->
@@ -67,7 +100,7 @@
                             <form action="#" method="post" class="newsletter">
                                 <input class="search" type="search" placeholder="Search here..." required="">
                                 <button class="form-control btn" value=""><span class="fa fa-search"></span></button>
-                                <div class="clearfix"></div>
+
                             </form>
                         </div>
                     </div>
@@ -80,111 +113,61 @@
     </div>
 
     <!-- //banner-->
-
-    <!--/contact -->
+    <!--/login -->
     <section class="banner-bottom py-5">
-        <div class="container py-md-5">
-            <h3 class="title-wthree mb-lg-5 mb-4 text-center">Local Shop Vendors </h3>
-            <div class="row contact_information">
-                <div class="col-md-6">
-                    <div class="contact_right p-lg-5 p-4">
-                        <h2>Add your Local Business here</h2>
-                        <form action="shop_data.php" method="post">
-                            <div class="field-group">
-                                <div class="content-input-field">
-                                    <input name="text" id="title" type="text" value="" placeholder="Business Name" required="">
-                                </div>
-                            </div>
-                            <div class="field-group">
-                                <div class="content-input-field">
-                                    <input name="text" id="businessname" type="text" value="" placeholder="Business Location" required="">
-                                </div>
-                            </div>
-                            <div class="field-group">
-                                <div class="content-input-field">
-                                    <textarea placeholder="Type of business" required=""></textarea>
-                                </div>
-                            </div>
-                            <div class="content-input-field">
-                                <input type="submit" value="Submit">
-                            </div>
+        <div class="container">
+            <div class="content-grid">
+                <div class="text-center icon">
+                    <span class="fa fa-user-circle-o"></span>
+                </div>
+                <div class="content-bottom">
+                    <form action="" method="post">
+                        <?php
+                             if(isset($error)){
+                                 foreach($error as $error){
+                                 echo '<span class="error-msg">'.$error.'</span>';
+                         };
+                          };
+                         ?>
+                        <div class="field-group">
 
-                        </form>  
-                    </div>
-                </div>
-                <table>
-                    <thead>
-                      <tr>
-                        <th>Vendor Name</th>
-                        <th>Type</th>
-                        <th>Location</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>El Tacote</td>
-                        <td>Tacos/Burritos</td>
-                        <td> <iframe width="400" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed/v1/place?q=El+Tacote&key=AIzaSyCZX67GJRsQtddfPK1FokiSbRZ6Kr0mdxE"></iframe></td>
-                      </tr>
-                      <tr>
-                        <td>Angelenos Wood Fired Pizza</td>
-                        <td>Pizza</td>
-                        <td><iframe width="400" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed/v1/place?q=Angelenos'+Wood+Fired+Pizza+Catering&key=AIzaSyCZX67GJRsQtddfPK1FokiSbRZ6Kr0mdxE"></iframe></td>
-                      </tr>
-                      <tr>
-                        <td>Flaming Hot Chicken</td>
-                        <td>Chicken Sandwich</td>
-                        <td><iframe width="400" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed/v1/place?q=Flaming+Hot+Chicken&key=AIzaSyCZX67GJRsQtddfPK1FokiSbRZ6Kr0mdxE"></iframe></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <br>
-                  <br>
-                <div class="col-lg-4 col-md-6 mt-lg-4 contact-inn-w3pvt">
-                    <div class="mt-5 information-wthree">
-                        <h4 class="text-uppercase mb-4"><span class="fa fa-comments"></span> Communication</h4>
-                        <p class="cont-wthree-para mb-3 text-capitalize">for general queries, including property Sales and constructions, please email us at <a href="mailto:info@example.com">info@example.com</a></p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mt-lg-4 contact-inn-w3pvt">
-                    <div class="mt-5 information-wthree">
-                        <h4 class="text-uppercase mb-4"><span class="fa fa-life-ring"></span> Technical Support</h4>
-                        <p class="cont-wthree-para mb-3 text-capitalize">we are ready to help! if you have any queries or issues, contact us for support <label>+12 345 678 8910</label>.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mt-lg-4 contact-inn-w3pvt">
-                    <div class="mt-5 information-wthree">
-                        <h4 class="text-uppercase mb-4"><span class="fa fa-map"></span> Others</h4>
-                        <p class="cont-wthree-para mb-3 text-capitalize">we are ready to help! if you have any queries or issues, contact us for support <label>+12 456 789 0000</label>.</p>
-                    </div>
+                            <div class="content-input-field">
+                                <input type="text" name="name" required placeholder="enter your name">
+                            </div>
+                        </div>
+                        <div class="field-group">
+
+                            <div class="content-input-field">
+                                <input type="email" name="email" required placeholder="enter your email">
+                            </div>
+                        </div>
+                        <div class="field-group">
+
+                            <div class="content-input-field">
+                                <input type="password" name="password" required placeholder="enter your password">
+                            </div>
+                        </div>
+                        <div class="field-group">
+                            <div class="content-input-field">
+                                <input type="password" name="cpassword" required placeholder="confirm your password">
+                            </div>
+                        </div>
+                        <div class="content-input-field">
+                        <select name="user_type">
+                            <option value="user">user</option>
+                            <option value="admin">admin</option>
+                        </select>
+                        <div class="content-input-field">
+                            <input type="submit" name="submit" value="register now" class="form-btn">
+                        </div>
+                        <div class="list-login-bottom text-center mt-lg-5 mt-4">
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
-    <!--//contact -->
-
-
-    <!--/newsletter -->
-    <section class="newsletter-w3pvt py-5">
-        <div class="container py-md-5">
-            <form method="post" action="#">
-                
-                <div class="row subscribe-sec">
-                    <div class="col-md-9">
-                        <input type="email" class="form-control" id="email" placeholder="Enter Your Email.." name="email" required="">
-
-                    </div>
-                    <div class="col-md-3">
-
-                        <button type="submit" class="btn submit">Subscribe</button>
-                    </div>
-
-                </div>
-
-            </form>
-        </div>
-    </section>
-    <!--//newsletter -->
+    <!-- /login -->
     <!--/shipping-->
     <section class="shipping-wthree">
         <div class="shiopping-grids d-lg-flex">
@@ -219,7 +202,7 @@
                 <div class="col-lg-3 footer_wthree_gridf mt-lg-5">
                     <h2><a href="index.html"><span>G</span>oVendor
                         </a> </h2>
-                    <label class="sub-des2">Online Store</label>
+                    
                 </div>
                 <div class="col-lg-3 footer_wthree_gridf mt-md-0 mt-4">
                     <ul class="footer_wthree_gridf_list">
@@ -229,19 +212,19 @@
                         <li>
                             <a href="about.html"><span class="fa fa-angle-right" aria-hidden="true"></span> About</a>
                         </li>
-                      
+                    
                       
 
                     </ul>
                 </div>
                 <div class="col-lg-3 footer_wthree_gridf mt-md-0 mt-sm-4 mt-3">
                     <ul class="footer_wthree_gridf_list">
-                       
+                    
 
                         <li>
                             <a href="#"><span class="fa fa-angle-right" aria-hidden="true"></span> Terms & Conditions</a>
                         </li>
-                       
+                  
                         <li>
                             <a href="contact.html"><span class="fa fa-angle-right" aria-hidden="true"></span> Contact Us</a>
                         </li>
@@ -284,11 +267,12 @@
 
     <!-- copyright -->
     <div class="cpy-right text-center py-3">
-        <p>GoVendor All rights reserved | 
+        <p>GoVendor All rights reserved |
+          
         </p>
 
     </div>
-  
+    <!-- //copyright -->
 
 </body>
 
